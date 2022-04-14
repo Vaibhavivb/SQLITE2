@@ -1,0 +1,36 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Scanner;
+public class delete{
+	  private static Connection connect() {  
+	        String url = "jdbc:sqlite:C:\\Users\\DELL\\sqlite/MOVIES_DB.db";
+	        Connection conn = null;  
+	        try {  
+	            conn = DriverManager.getConnection(url);  
+	        } catch (SQLException e) {  
+	            System.out.println(e.getMessage());  
+	        }  
+	        return conn;  
+	    }  
+	  public static void deletemtd(String mname){  
+	        		try {  
+	        	 
+	        	String del = "DELETE FROM Movie WHERE mname=?";  
+	            Connection conn = connect();  
+	            PreparedStatement pstmt = conn.prepareStatement(del); 
+	            pstmt.setString(1,mname);
+	            pstmt.executeUpdate();  
+	            System.out.println("Deleted successfully");  
+	        } catch (SQLException e) {  
+	            System.out.println(e.getMessage());  
+	        }  
+	    }   
+	    public static void main(String[] args) {  
+	    	
+	          
+	    }  
+	   
+	
+}

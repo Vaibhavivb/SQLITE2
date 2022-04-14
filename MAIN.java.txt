@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class MAIN {
+	public static void main(String[] args) {  
+		  Connect cn=new Connect();  
+        Create  ct = new Create(); 
+        ct.createNewDatabase("MOVIES_DB.db"); 
+        CreateTable  ctt = new  CreateTable();
+        ctt.createNewTable();
+        Scanner sc=new Scanner(System.in);
+        int year;
+        int i,n=0;
+        System.out.println("Enter 1:to INSERT INFORMATION\n 2:to SEE COMPLETE TABLE \n 3:to DELETE SPECIFIC MOVIE INFORMATION \n 4:to SEE SPECIFIC MOVIE INFO");
+        n=sc.nextInt();
+        String mname,actor,actress,dir,emt;
+        if(n==1) {
+        InsertRecordss ins = new InsertRecordss();
+        System.out.println("Enter the number of rows u wanna enter");
+        i=sc.nextInt();
+        while(i!=0) {
+       System.out.println("Enter the Year of release");
+       year=sc.nextInt();
+       emt=sc.nextLine();
+       System.out.println("Enter the Movie name");
+       mname=sc.nextLine();
+       System.out.println("Enter the main Actor name");
+       actor=sc.nextLine();
+       System.out.println("Enter the main Actress name");
+       actress=sc.nextLine();
+       System.out.println("Enter the Director name");
+       dir=sc.nextLine();
+       ins.insert(year,mname,actor,actress,dir);
+       i=i-1;
+        } }
+        if(n==2) {
+        SelectRecords slt = new SelectRecords();  
+        slt.selectAll();} 
+        if(n==3) {
+        delete dlt = new delete();  
+        System.out.println("Enter the movie u wanna delete");
+        String movien0= sc.nextLine();
+		String movien= sc.nextLine();
+       dlt.deletemtd(movien);}
+        if(n==4) {
+        	SelectRecords slt = new SelectRecords(); 
+        System.out.println("Enter the Actor name whose information u wanna see");
+        String movien0= sc.nextLine();
+		String actor2= sc.nextLine();
+        slt.select(actor2);}
+    } 
+}

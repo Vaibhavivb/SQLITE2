@@ -1,0 +1,43 @@
+import java.sql.Connection;  
+import java.sql.DriverManager;  
+import java.sql.PreparedStatement;  
+import java.sql.SQLException;
+public class InsertRecordss{  
+   
+    private static Connection connect() {  
+    
+        String url = "jdbc:sqlite:C:\\Users\\DELL\\sqlite/MOVIES_DB.db";  
+        Connection conn = null;  
+        try {  
+            conn = DriverManager.getConnection(url);  
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+        }  
+        return conn;  
+    }  
+   
+  
+    public static void insert(int year,String mname,String actor,String actress,String dir) {  
+        String sql = "INSERT INTO  Movie(year,mname,actor,actress,dir) VALUES(?,?,?,?,?)";  
+   
+        try{  
+            Connection conn = connect();  
+            PreparedStatement pstmt = conn.prepareStatement(sql);  
+            pstmt.setInt(1, year);  
+            pstmt.setString(2, mname);  
+            pstmt.setString(3, actor);  
+            pstmt.setString(4, actress);
+            pstmt.setString(5, dir);  
+            pstmt.executeUpdate();  
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+        }  
+    }  
+   
+    public static void main(String[] args) {  
+    	
+         
+         
+    }  
+   
+}
